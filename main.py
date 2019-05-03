@@ -1,5 +1,6 @@
 from MouseTracker import MouseTracker
 
 
-tracker = MouseTracker()
-tracker.listen_forever()
+if __name__ == "__main__":
+    tracker = MouseTracker()
+    tracker.listen_forever()
