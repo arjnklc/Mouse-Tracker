@@ -6,9 +6,6 @@ from Trayer import Trayer
 from util import *
 
 
-
-
-
 if __name__ == "__main__":
 
     add_to_startup()

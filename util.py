@@ -25,6 +25,7 @@ def write_to_file(content, filename="logs"):
     except:
         pass
 
+
 # TODO
 def add_to_startup():
     pass

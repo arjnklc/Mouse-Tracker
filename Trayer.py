@@ -52,5 +52,4 @@ class Trayer():
         self.mouse_tracker.stop_listening()
         self.update_menu()
         print("Deactivated")
-
 """

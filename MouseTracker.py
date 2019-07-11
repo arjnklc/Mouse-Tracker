@@ -40,7 +40,6 @@ class MouseTracker:
         s = "{0:.4f} Scrolled {1}".format(timestamp, (x, y))
         write_to_file(s)
 
-
     def start_listening(self):
         self.listener = Listener(on_move=self.on_move, on_click=self.on_click)
         self.listener.start()
