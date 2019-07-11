@@ -12,7 +12,7 @@ class MouseTracker:
 
     def on_move(self, x, y):
         timestamp = time.time() - self.started_timestamp
-        s = "{0:.4f} {1} {2} {3}".format(timestamp, x, y, get_window_name())
+        s = "{0:.4f} {1} {2} Movement {3}".format(timestamp, x, y, get_window_name())
         write_to_file(s)
 
     def on_click(self, x, y, button, pressed):

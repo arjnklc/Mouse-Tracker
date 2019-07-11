@@ -13,8 +13,6 @@ def get_window_name():
     except:
         return ""
 
-def get_window_name2():
-    return GetWindowText(GetForegroundWindow())
 
 
 def write_to_file(content, filename="logs"):
