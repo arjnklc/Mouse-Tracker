@@ -1,8 +1,7 @@
-from win32gui import GetWindowText, GetForegroundWindow
-
+import os
 import wmi
 import psutil, win32process, win32gui
-
+import shutil
 
 c = wmi.WMI()
 
@@ -24,6 +23,18 @@ def write_to_file(content, filename="logs"):
         pass
 
 
+def get_windows_version():
+    return "Windows 10"
+
+
 # TODO
 def add_to_startup():
-    pass
+    if get_windows_version() == "Windows 10":
+        user = str(os.getlogin())
+        user.strip()
+        src = os.getcwd() + "/tracker.exe"
+        dest = 'C:/Users/' + user + '/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup'
+        shutil.copy2(src, dest)
+
+    elif get_windows_version() == "Windows 7":
+        pass
