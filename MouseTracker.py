@@ -11,34 +11,27 @@ class MouseTracker:
         self.started_timestamp = time.time()
 
     def on_move(self, x, y):
-        timestamp = time.time() - self.started_timestamp
-        s = "{0:.4f} {1} {2} Movement {3}".format(timestamp, x, y, get_window_name())
-        write_to_file(s)
+        timestamp = time.time()
+        s = "Movement {0:.4f} {1} {2} None Move {3}".format(timestamp, x, y, get_window_name())
+        log(s)
 
     def on_click(self, x, y, button, pressed):
-        timestamp = time.time() - self.started_timestamp
-        s = "{0:.4f} {1} {2}".format(timestamp, x, y)
+        timestamp = time.time()
+        s = "Click {0:.4f} {1} {2}".format(timestamp, x, y)
         if pressed:  # press or release check
             if str(button) == "Button.right":
-                s += " Pressed right "
+                s += " Right Pressed "
             elif str(button) == "Button.left":
-                s += " Pressed left "
+                s += " Left Pressed "
         else:
             if str(button) == "Button.right":
-                s += " Released right "
+                s += " Right Released "
             elif str(button) == "Button.left":
-                s += " Released left "
+                s += " Left Released "
 
         s += get_window_name()
+        log(s)
 
-        write_to_file(s)
-
-    # TODO
-    def on_scroll(self, x, y, dx, dy):
-        print("scroll")
-        timestamp = time.time() - self.started_timestamp
-        s = "{0:.4f} Scrolled {1}".format(timestamp, (x, y))
-        write_to_file(s)
 
     def start_listening(self):
         self.listener = Listener(on_move=self.on_move, on_click=self.on_click)

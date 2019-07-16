@@ -13,7 +13,6 @@ class Trayer():
     def start(self):
         self.systray.start()
 
-
     def activate(self, systray):
         self.activated = True
         self.mouse_tracker.start_listening()

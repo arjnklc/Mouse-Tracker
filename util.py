@@ -5,6 +5,7 @@ import shutil
 
 c = wmi.WMI()
 
+
 def get_window_name():
     pid = win32process.GetWindowThreadProcessId(win32gui.GetForegroundWindow()) #This produces a list of PIDs active window relates to
     try:
@@ -13,28 +14,36 @@ def get_window_name():
         return ""
 
 
-
 def write_to_file(content, filename="logs"):
     try:
         file = open(filename, "a")
         file.write(content+"\n")
         file.close()
-    except:
-        pass
+    except Exception as e:
+        print(getattr(e, 'message', repr(e)))
 
 
-def get_windows_version():
-    return "Windows 10"
+def log(content):
+    user = str(os.getlogin())
+    user.strip()
+    path = 'C:/Users/' + user + '/MouseData/logs.txt'
+    write_to_file(content, path)
+
+def create_log_file():
+    user = str(os.getlogin())
+    user.strip()
+    dir = 'C:/Users/' + user + '/MouseData'
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 
-# TODO
 def add_to_startup():
-    if get_windows_version() == "Windows 10":
-        user = str(os.getlogin())
-        user.strip()
-        src = os.getcwd() + "/tracker.exe"
-        dest = 'C:/Users/' + user + '/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup'
+    user = str(os.getlogin())
+    user.strip()
+    src = os.getcwd() + "/tracker.exe"
+    dest = 'C:/Users/' + user + '/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup'
+    try:
         shutil.copy2(src, dest)
+    except Exception as e:
+        print(getattr(e, 'message', repr(e)))
 
-    elif get_windows_version() == "Windows 7":
-        pass
