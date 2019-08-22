@@ -1,5 +1,7 @@
 from pynput.mouse import Listener
 import time
+import threading
+import sched, time
 
 from util import *
 
@@ -9,6 +11,9 @@ class MouseTracker:
     def __init__(self):
         self.track = True
         self.started_timestamp = time.time()
+        self.listener = Listener(on_move=self.on_move, on_click=self.on_click)
+        self.reactivate()
+
 
     def on_move(self, x, y):
         timestamp = time.time()
@@ -34,8 +39,13 @@ class MouseTracker:
 
 
     def start_listening(self):
+        self.listener.stop()
         self.listener = Listener(on_move=self.on_move, on_click=self.on_click)
         self.listener.start()
 
+
     def stop_listening(self):
         self.listener.stop()
+
+    def reactivate(self):
+        rt = RepeatedTimer(3600, self.start_listening) # 3600 saniye = 1 saat
