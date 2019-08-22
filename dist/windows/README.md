@@ -1,0 +1,1 @@
+Sağ tık -> yönetici olarak çalıştır
