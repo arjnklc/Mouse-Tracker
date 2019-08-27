@@ -8,7 +8,7 @@ from util import *
 
 if __name__ == "__main__":
 
-    add_to_startup()
+    # add_to_startup()
     create_log_file()
     tracker = MouseTracker()
     t = Trayer(tracker)

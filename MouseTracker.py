@@ -11,7 +11,7 @@ class MouseTracker:
     def __init__(self):
         self.track = True
         self.started_timestamp = time.time()
-        self.listener = Listener(on_move=self.on_move, on_click=self.on_click)
+        self.listener = None
         self.reactivate()
 
 
@@ -39,13 +39,21 @@ class MouseTracker:
 
 
     def start_listening(self):
-        self.listener.stop()
+        try:
+            self.stop_listening()
+        except:			
+            pass	 
         self.listener = Listener(on_move=self.on_move, on_click=self.on_click)
+            
         self.listener.start()
 
 
+
     def stop_listening(self):
-        self.listener.stop()
+        try:
+            self.listener.stop()
+        except:
+            pass
 
     def reactivate(self):
-        rt = RepeatedTimer(3600, self.start_listening) # 3600 saniye = 1 saat
+        rt = RepeatedTimer(1800, self.start_listening) # 3600 saniye = 1 saat
